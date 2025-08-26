@@ -7,6 +7,7 @@ cmake_install.cmake
 # CLion and IDE related files
 .idea/
 *.iml
+*.ipr
 
 # Binaries and executables
 *.o
@@ -14,11 +15,41 @@ cmake_install.cmake
 *.so
 *.dll
 *.exe
-*.bin
-/build/
+*.out
+*.app
+
+# Build artifacts
+build/
+dist/
+bin/
 
 # Package files
 *.zip
 *.tar
 *.tar.gz
 *.rar
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+
+# Temporary files
+*~
+\#*
+
+# Editor backups
+*.swp
+*.bak
+
+# Qt Creator
+*.user
+*.pro.user
+
+# Other
+/.cache
