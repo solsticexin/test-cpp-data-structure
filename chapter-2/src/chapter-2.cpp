@@ -1,6 +1,7 @@
 //
 // Created by xin on 2025/8/20.
 //
+#include <iostream>
 #include <random>
 #include <unordered_set>
 #include <print>
@@ -44,8 +45,46 @@ SqList init_test_sqlist(int length) {
 }
 
 
-void A19_05(SqList& L){
-    
+bool A19_05(SqList& L){
+    if (L.length == 0) {
+        return false;
+    }
+    int i{},j{1};
+    for (; j< L.length; j++) {
+        if (L.data[i] != L.data[j]) {
+            L.data[++i] = L.data[j];
+        }
+    }
+    L.length = i+1;
+    return true;
+}
+
+SqList A19_06(SqList &L1, SqList &L2){
+    SqList new_L{};
+    int i{},j{},k{};
+    while(i<L1.length && j <L2.length){
+        if (L1.data[i] <= L2.data[j]) {
+            new_L.data[k] = L1.data[i];
+            i++;
+            k++;
+        }else {
+            new_L.data[k] = L2.data[j];
+            j++;
+            k++;
+        }
+    }
+    if (i < L1.length) {
+        new_L.data[k] =L1.data[i];
+        i++;
+        k++;
+    }
+    if (j < L2.length) {
+        new_L.data[k] =L1.data[j];
+        j++;
+        k++;
+    }
+    new_L.length=k;
+    return new_L; 
 }
 
 /* **********************************************************************
@@ -94,3 +133,67 @@ void test_A19_04() {
     Traverse(list);
 }
 
+void test_A19_06(){
+    std::print("test_19_06 ...\n");
+    SqList list1{};
+    list1.length=3;
+    list1.data[0] = 0;
+    list1.data[1] = 2;
+    list1.data[2] = 20;
+    Traverse(list1);
+    SqList list2{};
+    list2.length=3;
+    list2.data[0] = 1;
+    list2.data[1] = 3;
+    list2.data[2] = 5; 
+    Traverse(list2);
+    auto lsit3{A19_06(list1, list2)};
+    Traverse(lsit3);
+}
+
+void test_A19_07(){
+    std::print("test_19_07 ...\n");
+    //设计思想先整体逆转在局部逆转
+    int m=5;
+    int n=7;
+    int all[m+n];
+    for(int i{};i<m+n;i++){
+        all[i] =i;
+    }
+    for (int t : all) {
+        std::print("{} ",t);
+    }
+    std::cout << "\n";
+    for (int i; i < (m+n)/2; i++) {
+        int temp{};
+        temp=all[i];
+        all[i]=all[m+n-i-1];
+        all[m+n-i-1]=temp;
+    }
+    for (int t : all) {
+        std::print("{} ",t);
+    }
+    std::cout << "\n";
+    for (int i; i < m/2; i++) {
+        int temp{};
+        temp=all[i];
+        all[i]=all[m-i-1];
+        all[m-i-1]=temp;
+    }
+    for (int t : all) {
+        std::print("{} ",t);
+    }
+    std::cout << "\n";
+    int i{m},j{m+n-1};
+    while (i<=j) {
+        int temp{all[i]};
+        all[i]=all[j];
+        all[j] = temp;
+        i++;
+        j--;
+    }
+    for (int t : all) {
+        std::print("{} ",t);
+    }
+    std::cout << "\n";
+}

@@ -7,4 +7,6 @@ int main() {
     test_A19_03();
     test_A19_04();
     test_sq_stack();
+    test_A19_06();
+    test_A19_07();
 }

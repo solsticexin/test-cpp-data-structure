@@ -38,5 +38,5 @@ void test_sq_stack() {
     println("栈顶元素{}",result);
     print("测试失败pop");
     if (!pop(S,result))
-        print("测试失败pop成功！！！");
+        print("测试失败pop成功！！！\n");
 }
