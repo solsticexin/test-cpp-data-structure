@@ -3,7 +3,7 @@
 //
 
 #include "../include/list.h"
-#include <print>
+#include <iostream>
 bool A19_01(SqList &l, int &e) {
     if (l.length==0) return false;
     int min{l.data[0]};
@@ -61,10 +61,10 @@ bool A19_04(SqList& l,int s,int t) {
 }
 void Traverse(SqList& l) {
     if (l.length==0) return;
-    std::print("当前list:[");
+    std::cout << "当前list:[";
     for (int i{0};i<l.length;i++) {
-        if (i==l.length-1) std::print("{}",l.data[i]);
-        else std::print("{},", l.data[i]);
+        if (i==l.length-1) std::cout << l.data[i];
+        else std::cout << l.data[i] << ",";
     }
-    std::print("]\n");
+    std::cout << "]" << std::endl;
 }

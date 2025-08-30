@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 4.1)
 project(test_cpp_DataStructure)
 
-set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD 17)
 
 #添加核心数据结构库
 add_subdirectory(core)

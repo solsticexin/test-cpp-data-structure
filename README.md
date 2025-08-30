@@ -22,7 +22,6 @@
     git clone [https://github.com/xinodyessey-cmyk/test-cpp-DataStructure.git]
     ```
 2.  **编译与运行**：
-    请采用c++23及其以上的版本编译和运行此项目。 因为我采用了`std::print()`和`std::println()`如果不想使用c++23及其以上版本请把对应的标准输出改为`std::cout`。
 3.  **自定义测试**：
     您可以根据需要，在`main.cpp`中调用或编写新的测试函数，以验证您自己实现的题目。
 

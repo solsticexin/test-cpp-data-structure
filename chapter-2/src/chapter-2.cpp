@@ -4,7 +4,7 @@
 #include <iostream>
 #include <random>
 #include <unordered_set>
-#include <print>
+#include <iostream>
 #include "../include/chapter-2.h"
 #include "../../core/include/list.h"
 /**
@@ -96,23 +96,23 @@ SqList A19_06(SqList &L1, SqList &L2){
 
 
 void test_A19_01() {
-    std::print("test_19_01 ...\n");
+    std::cout << "test_19_01 ..." << std::endl;
     auto list=init_test_sqlist(10);
     Traverse(list);
     int del_min{};
     A19_01(list,del_min);
-    std::println("最小元素：{}",del_min);
+    std::cout << "最小元素：" << del_min << std::endl;
     Traverse(list);
 }
 void test_A19_02() {
-    std::print("test_19_02 ...\n");
+    std::cout << "test_19_02 ..." << std::endl;
     auto list=init_test_sqlist(11);
     Traverse(list);
     A19_02(list);
     Traverse(list);
 }
 void test_A19_03() {
-    std::print("test_19_03 ...\n");
+    std::cout << "test_19_03 ..." << std::endl;
     auto list=init_test_sqlist(10);
     list.data[3]=10;
     list.data[7]=10;
@@ -123,7 +123,7 @@ void test_A19_03() {
     Traverse(list);
 }
 void test_A19_04() {
-    std::print("test_19_04 ...\n");
+    std::cout << "test_19_04 ..." << std::endl;
     auto list=init_test_sqlist(11);
     list.data[4]=40;
     list.data[5]=30;
@@ -134,7 +134,7 @@ void test_A19_04() {
 }
 
 void test_A19_06(){
-    std::print("test_19_06 ...\n");
+    std::cout << "test_19_06 ..." << std::endl;
     SqList list1{};
     list1.length=3;
     list1.data[0] = 0;
@@ -152,7 +152,7 @@ void test_A19_06(){
 }
 
 void test_A19_07(){
-    std::print("test_19_07 ...\n");
+    std::cout << "test_19_07 ..." << std::endl;
     //设计思想先整体逆转在局部逆转
     int m=5;
     int n=7;
@@ -161,7 +161,7 @@ void test_A19_07(){
         all[i] =i;
     }
     for (int t : all) {
-        std::print("{} ",t);
+        std::cout << t << " ";
     }
     std::cout << "\n";
     for (int i; i < (m+n)/2; i++) {
@@ -171,7 +171,7 @@ void test_A19_07(){
         all[m+n-i-1]=temp;
     }
     for (int t : all) {
-        std::print("{} ",t);
+        std::cout << t << " ";
     }
     std::cout << "\n";
     for (int i; i < m/2; i++) {
@@ -181,7 +181,7 @@ void test_A19_07(){
         all[m-i-1]=temp;
     }
     for (int t : all) {
-        std::print("{} ",t);
+        std::cout << t << " ";
     }
     std::cout << "\n";
     int i{m},j{m+n-1};
@@ -193,7 +193,7 @@ void test_A19_07(){
         j--;
     }
     for (int t : all) {
-        std::print("{} ",t);
+        std::cout << t << " ";
     }
     std::cout << "\n";
 }
