@@ -7,6 +7,7 @@
 #include <iostream>
 #include "../include/chapter-2.h"
 #include "../../core/include/list.h"
+#include "../../core/include/auxiliary.h"
 /**
  * @brief 初始化一个用于测试的顺序表，包含不重复的随机整数。
  * @param length 顺序表的长度。如果 length 超过 MaxSize，将使用 MaxSize。
@@ -86,7 +87,25 @@ SqList A19_06(SqList &L1, SqList &L2){
     new_L.length=k;
     return new_L; 
 }
-
+void SearchExchangeInsert(ElemType A[],ElemType x,int n){ //n是数组长度
+    int low{},hight{n-1},mid{};
+    while (low <= hight) {
+        mid=(low+hight)/2;
+        if (A[mid] == x) break;
+        else if(A[mid]<x) low=mid+1;
+        else hight=mid-1;
+    }
+    if (A[mid]==x && mid != n-1) {
+        auxiliary::swap(A[mid],A[mid+1]);
+    }
+    if (low>hight) {
+        int i{n-1};
+        for (;i>hight; i--) {
+            A[i+1] =x;
+        }
+        A[i+1] =x;
+    }
+}
 /* **********************************************************************
  * **********************************************************************
  * **********************************************************************

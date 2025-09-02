@@ -3,6 +3,7 @@ add_library(
         core STATIC
         src/list.cpp
         src/stack.cpp
+        src/string.cpp
 )
 
 #设置头文件目录

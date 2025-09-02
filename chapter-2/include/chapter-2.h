@@ -4,9 +4,11 @@
 
 #ifndef TEST_CPP_DATASTRUCTURE_CHAPTER_2_H
 #define TEST_CPP_DATASTRUCTURE_CHAPTER_2_H
+using ElemType = int;
 #include "../../core/include/list.h"
 bool A19_05(SqList& L);
 SqList A19_06(SqList& L1,SqList& L2);
+void SearchExchangeInsert(ElemType A[],ElemType x);
 
 void test_A19_01();
 void test_A19_02();

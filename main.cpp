@@ -1,6 +1,6 @@
 #include "chapter-2/include/chapter-2.h"
 #include "chapter-3/include/chapter-3.h"
-
+#include "core/include/string.h"
 int main() {
     test_A19_01();
     test_A19_02();
@@ -8,5 +8,5 @@ int main() {
     test_A19_04();
     test_sq_stack();
     test_A19_06();
-    test_A19_07();
+    string::test_Index();
 }
