@@ -4,6 +4,7 @@ add_library(
         src/list.cpp
         src/stack.cpp
         src/string.cpp
+        src/auxiliary.cpp
 )
 
 #设置头文件目录

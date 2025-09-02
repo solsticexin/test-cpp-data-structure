@@ -4,5 +4,6 @@ namespace auxiliary {
         T temp{a};
         a=b;
         b=temp;
-    }   
+    }
+    int max(int a,int b);   
 }

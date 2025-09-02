@@ -2,6 +2,7 @@
 #include "../include/string.h"
 namespace string{
     int Index(std::string S,std::string T){
+        if(S.empty() || T.empty() || S.length()<T.length()) return -2;
         int i{},j{};
         while (i<S.length() && j<T.length()) {
             if (S[i] == T[j]) {

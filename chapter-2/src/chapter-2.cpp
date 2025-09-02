@@ -106,6 +106,87 @@ void SearchExchangeInsert(ElemType A[],ElemType x,int n){ //n是数组长度
         A[i+1] =x;
     }
 }
+void samekey(int A[],int B[] ,int C[],int n){
+    int i{},j{},k{};
+    while (i<n && j<n && k<n) {
+        if (A[i] == B[j] == C[k]) {
+            std::cout <<  A[i] << "\n";
+            i++;
+            j++;
+            k++;
+        }else {
+            auto max=auxiliary::max(auxiliary::max(A[i], B[j]), C[k]);
+            if(A[i] < max) i++;
+            if(B[j]<max) j++;
+            if(C[k] < max) k++;
+        }
+    }
+}
+void Reverse(int* R,int from,int to){
+    int i{},temp{};
+    for(;i<(to-from)/2;i++){
+        auxiliary::swap(R[from+i], R[to-i]);
+    }
+}
+void Converse(int R[],int n,int p){
+    Reverse(R, 0, p-1);
+    Reverse(R, p, n-1);
+    Reverse(R, 0,n-1);
+}
+int M_Search(int A[],int B[],int n){
+    int s1,d1,m1,s2,d2,m2;
+    s1=0; d1=n-1;
+    s2=0;d2=n-1;
+    while (s1 !=d1 || s2 !=d2) {
+        m1=(s1+d1)/2;
+        m2 =(s2+d2)/2;
+        if (A[m1]==B[m2]) {
+            return A[m1];
+        }
+        if (A[m1]<B[m2]){
+            if((s1+d1)%2 ==0){
+                s1 =m1;
+                d2 =m2;
+            }else {
+                s1 =m1+1;
+                d2 =m2;
+            }
+        }else {
+            if((s1+d1)% 2==0){
+                d1 =m1;
+                s2 =m2;
+            }else{
+                d1 =m1;
+                s2 =m2+1;
+            }
+        }
+    }
+    return A[s1]<B[s2]?A[s1]:B[s2];
+}
+int Majority(int A[],int n){
+    int i{},c{},count{1};
+    c=A[0];
+    for (i=1;i<n;i++){
+        if (A[i] == c)
+            count++;
+        else 
+            if(count>0)
+                count--;
+            else{
+                c=A[i];
+                count=1;
+            }
+    }
+    if(count >0){
+        for(i =count =0;i<n;i++)
+            if(A[i] == c)
+                count++;
+    }
+    if(count>n/2) 
+        return c;
+    else
+        return  -1;;
+}
 /* **********************************************************************
  * **********************************************************************
  * **********************************************************************
