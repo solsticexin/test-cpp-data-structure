@@ -9,4 +9,5 @@ int main() {
     test_sq_stack();
     test_A19_06();
     string::test_Index();
+    test_A19_12();
 }

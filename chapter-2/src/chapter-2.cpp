@@ -8,6 +8,7 @@
 #include "../include/chapter-2.h"
 #include "../../core/include/list.h"
 #include "../../core/include/auxiliary.h"
+#define INT_MAX 0xfffffff
 /**
  * @brief 初始化一个用于测试的顺序表，包含不重复的随机整数。
  * @param length 顺序表的长度。如果 length 超过 MaxSize，将使用 MaxSize。
@@ -45,6 +46,8 @@ SqList init_test_sqlist(int length) {
     return list;
 }
 
+//-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 bool A19_05(SqList& L){
     if (L.length == 0) {
@@ -187,6 +190,47 @@ int Majority(int A[],int n){
     else
         return  -1;;
 }
+int findMissMin(int A[],int n){
+    int i{},* B{};
+    //B=(int*)malloc(sizeof(int*)*n);
+    B=new int[n](); //创建数组并初始化
+    for(;i<n;i++){
+        if(A[i] >0&&A[i] <=n)
+            B[A[i]-1]=1;
+    }
+    for(i=0;i<n;i++){
+        if(B[i]==0) break;  
+    }
+    delete[] B;
+    return i+1;
+}
+//-------------
+int abs_(int a){ //辅助函数
+    if(a<0) return -a;
+    else return a;
+}
+bool xls_min(int a,int b,int c){ //辅助函数
+    if(a<=b && a<=c) return true;
+    return false;
+}
+int findMinofTrip(int A[],int n ,int B[],int m,int C[],int p){
+    int i=0,j=0,k=0,D_min=INT_MAX,D=0;
+    while(i<n && j<m && k<p && D_min>0){
+        D=abs_(A[i]-B[j])+abs_(A[i]-C[k])+abs_(C[k]-B[j]);
+        if (D<D_min) {
+            D_min=D;
+        }
+        if (xls_min(A[i], B[j], C[k])) {
+            i++;
+        }else if (xls_min(B[j], C[k], A[i])) {
+            j++;
+        }else {
+            k++;
+        }
+    }
+    return D_min;
+}
+//----------------
 /* **********************************************************************
  * **********************************************************************
  * **********************************************************************
@@ -232,7 +276,6 @@ void test_A19_04() {
     A19_04(list,30,50);
     Traverse(list);
 }
-
 void test_A19_06(){
     std::cout << "test_19_06 ..." << std::endl;
     SqList list1{};
@@ -250,7 +293,6 @@ void test_A19_06(){
     auto lsit3{A19_06(list1, list2)};
     Traverse(lsit3);
 }
-
 void test_A19_07(){
     std::cout << "test_19_07 ..." << std::endl;
     //设计思想先整体逆转在局部逆转
@@ -296,4 +338,10 @@ void test_A19_07(){
         std::cout << t << " ";
     }
     std::cout << "\n";
+}
+void test_A19_12(){
+    std::cout <<"test_A19_12...\n";
+    int A[]={1,2,3,2,2,5,3,2,2,};
+    auto result{Majority(A, 9)};
+    std::cout<< result<<"\n";
 }
