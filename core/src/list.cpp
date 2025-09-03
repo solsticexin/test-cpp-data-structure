@@ -68,3 +68,39 @@ void Traverse(SqList& l) {
     }
     std::cout << "]" << std::endl;
 }
+
+namespace link_list {
+    bool InitList(LinkList& L){
+        L=new LNode;
+        if (L==nullptr) {
+            return false;
+        }
+        L->next=nullptr;
+        return true;
+    }
+    int length(LinkList& L){
+        int len{};
+        LNode* p =L;
+        while (p->next!=nullptr) {
+            p=p->next;
+            len=len+1;
+        }
+        return len;
+    }
+    LNode* GetElem(LinkList& L,int i){
+        LNode* p=L;
+        int j=0;
+        while (p!=nullptr && j<i) {
+            p=p->next;
+            j++;
+        }
+        return p;
+    }
+    LNode* LocateElem(LinkList& L,ElemType e){
+        LNode* p =L->next;
+        while (p!=nullptr && p->data!=e) {
+            p=p->next;
+        }
+        return p;
+    }
+}
