@@ -103,4 +103,83 @@ namespace link_list {
         }
         return p;
     }
+    bool ListInsert(LinkList& L,int i,ElemType e){
+        LNode* p=L;
+        int j=0;
+        while (j<i-1 && p!=nullptr) {
+            p=p->next;
+            j++;
+        }
+        auto new_node=new LNode();
+        if (p==nullptr || new_node==nullptr) {
+            return false;
+        }
+        new_node->data=e;
+        new_node->next=p->next;
+        p->next=new_node;
+        return true;
+    }
+    bool ListDelete(LinkList& L, int i,ElemType& e){
+        auto p=L;
+        int j{};
+        while (p!=nullptr && j<i-1) {
+            p=p->next;
+            j++;
+        }
+        if (p==nullptr||p->next==nullptr) {
+            return false;
+        }
+        auto temp=p->next;
+        e=temp->data;
+        p->next=temp->next;
+        delete temp;
+        return true;
+    }
+    LinkList List_HeadInsert(LinkList& L){
+        LNode* s;
+        int x;
+        L=new LNode();
+        L->next=nullptr;
+        std::cout << "输入ElemType\n";
+        std::cin >> x;
+        while (x!=999) {
+            s=new LNode();
+            s->data=x;
+            s->next=L->next;
+            L->next=s;
+            std::cout << "输入ElemType\n";
+            std::cin >>x;
+        }
+        return L;
+    }
+    LinkList List_TailInsert(LinkList& L){
+        int x;
+        L=new LNode();
+        LNode* s,*r=L;
+        std::cout << "输入ElemType\n";
+        std::cin >> x;
+        while (x!=999) {
+            s=new LNode();
+            s->data=x;
+            r->next=s;
+            r=s;
+            std::cout << "输入ElemType\n";
+            std::cin >> x;
+        }
+        r->next=nullptr;
+        return L;
+    }
+    void Traverse(LinkList& L){
+        LNode* p=L;
+        std::cout <<"[ ";
+        while (p!=nullptr && p->next!=nullptr) {
+            if (p->next->next==nullptr) {
+                std::cout << p->next->data;
+            }else {
+                std::cout << p->next->data<<",";
+            }
+            p=p->next;
+        }
+        std::cout <<" ]\n";
+    }
 }
