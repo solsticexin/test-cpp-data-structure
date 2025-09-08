@@ -106,7 +106,8 @@ namespace link_list {
     bool ListInsert(LinkList& L,int i,ElemType e){
         LNode* p=L;
         int j=0;
-        while (j<i-1 && p!=nullptr) {
+        //循环到i的前一位，及i-1，由于j从零开始所以是小于i-1,而不是等于i-1
+        while (j<i-1 && L!=nullptr) {
             p=p->next;
             j++;
         }

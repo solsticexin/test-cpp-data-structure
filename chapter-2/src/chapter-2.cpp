@@ -8,6 +8,7 @@
 #include "../include/chapter-2.h"
 #include "../../core/include/list.h"
 #include "../../core/include/auxiliary.h"
+using namespace link_list;
 #define INT_MAX 0xfffffff
 /**
  * @brief 初始化一个用于测试的顺序表，包含不重复的随机整数。
@@ -344,4 +345,40 @@ void test_A19_12(){
     int A[]={1,2,3,2,2,5,3,2,2,};
     auto result{Majority(A, 9)};
     std::cout<< result<<"\n";
+}
+
+//---------------
+//p42
+void Del_x_1(link_list::LinkList& L,const int x){
+    LNode* p=L->next;
+    LNode* pre=L;
+    LNode* temp;
+    while (p!=nullptr && L!=nullptr){
+        if (p->data==x){
+            temp=p;
+            p=p->next;
+            pre->next=p;
+            delete temp;
+        }else{
+            pre=p;
+            p=p->next;
+        }
+        
+    }
+    
+}
+void Del_x_2(LinkList& L,const int x){
+    LNode* p=L->next,* rear=L,* temp;
+    while (p!=nullptr && L!=nullptr){
+        if(p->data!=x){
+            rear->next=p;
+            rear=p;
+            p=p->next;
+        }else{
+            temp=p;
+            p=p->next;
+            delete temp;
+        }
+    }
+    
 }

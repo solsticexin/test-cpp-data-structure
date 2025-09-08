@@ -2,6 +2,7 @@
 add_library(
         chapter-2 STATIC
         src/chapter-2.cpp
+        src/link.cpp
 )
 
 #设置头文件目录
