@@ -1,4 +1,5 @@
 #include "../include/link.h"
+#include "list.h"
 #include <iostream>
 namespace link_list{
     LinkList Reverse_1(LinkList L){
@@ -70,5 +71,33 @@ namespace link_list{
                 p=p->next;
             }
         }
+    }
+    /**
+     * 将链表A拆分为两个链表A和B，采用交替取元素的方式
+     * 将原链表中的第1,3,5,...个元素保留在链表A中
+     * 将原链表中的第2,4,6,...个元素放入新链表B中
+     * @param A 输入的链表，拆分后保留奇数位置的元素
+     * @return 新创建的链表B，包含原链表中偶数位置的元素
+     */
+    LinkList DisCreat_2(LinkList& A){
+        LinkList B=new LNode();
+        B->next=nullptr;
+        LNode* p=A->next,*q;
+        LNode* ra=A;
+        while (p!=nullptr) {
+            // 取一个节点放入链表A中
+            ra->next=p;
+            ra=p;
+            p=p->next;
+            // 如果还有节点，则取下一个节点放入链表B中
+            if (p!=nullptr) {
+                q=p->next;
+                p->next=B->next;
+                B->next=p;
+                p=q;
+            }
+        }
+        ra->next=nullptr;
+        return B;
     }
 }
