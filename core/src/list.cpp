@@ -79,9 +79,10 @@ namespace link_list {
         return true;
     }
     int length(LinkList& L){
+        if(L==nullptr) return 0;
         int len{};
-        LNode* p =L;
-        while (p->next!=nullptr) {
+        LNode* p =L->next;
+        while (p!=nullptr) {
             p=p->next;
             len=len+1;
         }
@@ -139,48 +140,84 @@ namespace link_list {
     LinkList List_HeadInsert(LinkList& L){
         LNode* s;
         int x;
-        L=new LNode();
-        L->next=nullptr;
-        std::cout << "输入ElemType\n";
+        L = new LNode();
+        L->next = nullptr;
+        std::cout << "输入ElemType（输入999结束）\n";
         std::cin >> x;
-        while (x!=999) {
-            s=new LNode();
-            s->data=x;
-            s->next=L->next;
-            L->next=s;
-            std::cout << "输入ElemType\n";
-            std::cin >>x;
+        while (x != 999) {
+            s = new LNode();
+            s->data = x;
+            s->next = L->next;
+            L->next = s;
+            std::cout << "输入ElemType（输入999结束）\n";
+            std::cin >> x;
         }
         return L;
     }
+    
     LinkList List_TailInsert(LinkList& L){
         int x;
-        L=new LNode();
-        LNode* s,*r=L;
-        std::cout << "输入ElemType\n";
+        L = new LNode();
+        LNode* s, *r = L;  // r为尾指针
+        std::cout << "输入ElemType（输入999结束）\n";
         std::cin >> x;
-        while (x!=999) {
-            s=new LNode();
-            s->data=x;
-            r->next=s;
-            r=s;
-            std::cout << "输入ElemType\n";
+        while (x != 999) {
+            s = new LNode();
+            s->data = x;
+            r->next = s;  // 将新节点链接到尾部
+            r = s;        // 更新尾指针
+            std::cout << "输入ElemType（输入999结束）\n";
             std::cin >> x;
         }
-        r->next=nullptr;
+        r->next = nullptr;  // 尾节点的next置为空
         return L;
     }
     void Traverse(LinkList& L){
-        LNode* p=L;
-        std::cout <<"[ ";
-        while (p!=nullptr && p->next!=nullptr) {
-            if (p->next->next==nullptr) {
-                std::cout << p->next->data;
-            }else {
-                std::cout << p->next->data<<",";
+        LNode* p = L->next;  // 指向第一个数据节点
+        std::cout << "[ ";
+        while (p != nullptr) {
+            if (p->next == nullptr) {
+                std::cout << p->data;
+            } else {
+                std::cout << p->data << ", ";
             }
-            p=p->next;
+            p = p->next;
         }
-        std::cout <<" ]\n";
+        std::cout << " ]\n";
+    }
+    std::ostream& operator<<(std::ostream& out, const LinkList& L) {
+        if (L == nullptr) {
+            out << "[ ]";
+            return out;
+        }
+        LNode* p = L->next;  // 指向第一个数据节点
+        out << "[ ";
+        while (p != nullptr) {
+            if (p->next == nullptr) {
+                out << p->data;
+            } else {
+                out << p->data << ", ";
+            }
+            p = p->next;
+        }
+        out << " ]";
+        return out;
+    }
+    void test_ostream(){
+        std::cout << "测试链表重载<<运算符功能" << std::endl;
+        
+        // 测试链表重载<<运算符
+        link_list::LinkList L = nullptr;
+        std::cout << "创建空链表并打印：" << std::endl;
+        std::cout << L << std::endl;
+        
+        // 使用尾插法创建链表
+        std::cout << "使用尾插法创建链表（输入数据，以999结束）：" << std::endl;
+        L = link_list::List_TailInsert(L);
+        
+        // 使用重载的<<运算符打印链表
+        std::cout << "使用重载<<运算符打印链表：" << std::endl;
+        std::cout << L << std::endl;
+        
     }
 }

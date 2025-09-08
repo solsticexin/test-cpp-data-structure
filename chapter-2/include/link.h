@@ -5,6 +5,7 @@
 namespace link_list{
     LinkList Reverse_1(LinkList L);
     LinkList Reverse_2(LinkList L);
+    void RangeDelete(LinkList& L,int min,int max);
     void test_Reverse();
 }
 #endif

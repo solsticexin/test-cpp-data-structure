@@ -58,4 +58,17 @@ namespace link_list{
         // 清理内存
         // 注意：这里为了简化测试，没有进行内存释放
     }
+    void RangeDelete(LinkList& L,int min,int max){
+        LNode* pre=L,*p=L->next;
+        while(p!=nullptr){
+            if(p->data>min && p->data<max){
+                pre->next=p->next;
+                delete p;
+                p=pre->next;
+            }else{
+                pre=p;
+                p=p->next;
+            }
+        }
+    }
 }
