@@ -31,5 +31,6 @@ namespace link_list {
     LinkList List_HeadInsert(LinkList& L);
     LinkList List_TailInsert(LinkList& L);
     void Traverse(LinkList& L);
+    
 }
 #endif //TEST_CPP_DATASTRUCTURE_LIST_H
