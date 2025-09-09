@@ -297,8 +297,8 @@ void test_A19_06(){
 void test_A19_07(){
     std::cout << "test_19_07 ..." << std::endl;
     //设计思想先整体逆转在局部逆转
-    int m=5;
-    int n=7;
+    constexpr int m=5;
+    constexpr int n=7;
     int all[m+n];
     for(int i{};i<m+n;i++){
         all[i] =i;
@@ -307,7 +307,7 @@ void test_A19_07(){
         std::cout << t << " ";
     }
     std::cout << "\n";
-    for (int i; i < (m+n)/2; i++) {
+    for (int i = 0; i < (m+n)/2; i++) {
         int temp{};
         temp=all[i];
         all[i]=all[m+n-i-1];

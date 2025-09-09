@@ -1,6 +1,8 @@
 #include "../include/link.h"
 #include "list.h"
 #include <iostream>
+#include <bits/stl_set.h>
+
 namespace link_list{
     LinkList Reverse_1(LinkList L){
         LNode* p,*rear;
@@ -80,7 +82,7 @@ namespace link_list{
      * @return 新创建的链表B，包含原链表中偶数位置的元素
      */
     LinkList DisCreat_2(LinkList& A){
-        LinkList B=new LNode();
+        const auto B=new LNode();
         B->next=nullptr;
         LNode* p=A->next,*q;
         LNode* ra=A;
@@ -116,7 +118,7 @@ namespace link_list{
     }
     void Get_common(LinkList& A,LinkList B){
         LNode* p=A->next,*q=B->next,*r,*s;
-        LinkList C=new LNode();
+        const auto C=new LNode();
         r=C;
         while(p!=nullptr&&q!=nullptr){
             if (p->data < q->data) {
@@ -190,5 +192,72 @@ namespace link_list{
         }else {
             return 0;
         }
+    }
+    int Symmetry(DLinkList& L){
+        const DNode* p=L->next;
+        const DNode* q=L->prior;
+        while (p!=q && p->next!=q){
+            if (p->data == q->data){
+                p=p->next;
+                q=q->prior;
+            }else
+                return 0;
+        }
+        return 1;
+    }
+    LinkList Link(LinkList& h1, LinkList& h2) {
+        LNode* p{},*q{};
+        p=h1;
+        while (p->next!=h1) {
+            p=p->next;
+        }
+        q=h2;
+        while (q->next!=h2) {
+            q=q->next;
+        }
+        p->next=h2;
+        q->next=h1;
+        return h1;
+    }
+
+    namespace circular_linked_list {
+    DNode* Locate(DLinkList& L, int x) {
+        DNode* p{L->next},*q;
+        while (p&&p->data!=x)
+            p=p->next;
+        if (!p) {
+            exit(0);
+        }else {
+            (p->freq)++;
+        }
+        if (p->pre == L ||p->pre->freq > p->freq) {
+            return p;
+        }
+        if (p->next !=nullptr)
+            p->next->pre=p->pre;
+        p->pre->next=p->next;
+        q=p->pre;
+        while (q!=L && q->freq <= p->freq)
+            q=q->pre;
+        p->next=q->next;
+        if (q->next!=nullptr)
+            q->next->pre=p;
+        p->pre=q;
+        q->next=p;
+        return p;
+    }
+    // DNode* Locate_2(DLinkList& L,int x) {
+    //     if (L==nullptr) return nullptr;
+    //     DNode* p{L->next};
+    //     DNode* temp{nullptr};
+    //     while (p!=nullptr && p->data!=x) p=p->next; //找到x所在结点
+    //     if (p==nullptr) exit(0);
+    //     p->freq++;
+    //     temp=p->pre;
+    //     if (p->pre==L ||temp->freq > p->freq) { //判断x所在结点时候是头结点或者是前一结点是否大于x所在结点
+    //         return  p;
+    //     }
+    //     if (p->next ==nullptr)
+    // }
     }
 }

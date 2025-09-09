@@ -68,6 +68,13 @@ namespace link_list {
     // 重载<<运算符，用于打印链表
     std::ostream& operator<<(std::ostream& out, const LinkList& L);
     void test_ostream();
+
+    //带头结点的循环双链表
+    typedef struct DLNode{
+        int data;
+        struct DLNode* next;
+        struct DLNode* prior;
+    }*DLinkList,DNode;
 }
 
 #endif //TEST_CPP_DATASTRUCTURE_LIST_H

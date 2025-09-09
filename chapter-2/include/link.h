@@ -12,5 +12,17 @@ namespace link_list{
     void Get_common(LinkList& A,LinkList B); //有序递增
     LinkList Union(LinkList& la,LinkList& lb); //递增有序
     int Pattern(LinkList A,LinkList B);
+    int Symmetry(DLinkList& L);
+    LinkList Link(LinkList& h1,LinkList& h2);
+
+    namespace circular_linked_list {
+        typedef struct DNode {
+            int data;
+            DNode* next;
+            DNode* pre;
+            int freq; //访问频度
+        }*DLinkList,DNode;
+        DNode* Locate(DLinkList& L,int x);
+    }
 }
 #endif
