@@ -114,4 +114,81 @@ namespace link_list{
             }
         }
     }
+    void Get_common(LinkList& A,LinkList B){
+        LNode* p=A->next,*q=B->next,*r,*s;
+        LinkList C=new LNode();
+        r=C;
+        while(p!=nullptr&&q!=nullptr){
+            if (p->data < q->data) {
+                p=p->next;
+            }else if (p->data > q->data) {
+                q=q->next;
+            }else {
+                s=new LNode();
+                s->data=p->data;
+                r->next=s;
+                r=s;
+                p=p->next;
+                q=q->next;
+            }
+        }
+        r->next=nullptr;
+    }
+    LinkList Union(LinkList& la,LinkList& lb){
+        LNode* p=la->next;
+        LNode* q=lb->next;
+        LNode* pc =la;
+        LNode* temp;
+        while(p!=nullptr && q!=nullptr){
+            if (p->data ==q->data) {
+                pc->next=p;
+                pc=p;
+                temp=q;
+                q=q->next;
+                p=p->next;
+                delete temp;
+            }else if(p->data <q->data){
+                temp=p;
+                p=p->next;
+                delete temp;
+            }else {
+                temp=q;
+                q=q->next;
+                delete temp;
+            }
+        }
+        while (p) {
+            temp=p;
+            p=p->next;
+            delete temp;
+        }
+        while (q) {
+            temp=q;
+            q=q->next;
+            delete temp;
+        }
+        pc->next=nullptr;
+        delete lb;
+        return la;
+    }
+    int Pattern(LinkList A,LinkList B){
+        LNode* p=A;
+        LNode* pre=p;
+        LNode* q=B;
+        while (p&&q) {
+            if (p->data == q->data) {
+                p=p->next;
+                q=q->next;
+            }else {
+                pre=pre->next;
+                p=pre;
+                q=B;
+            }
+        }
+        if (q==nullptr) {
+            return 1;
+        }else {
+            return 0;
+        }
+    }
 }

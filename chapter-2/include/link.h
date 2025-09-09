@@ -9,5 +9,8 @@ namespace link_list{
     void test_Reverse();
     LinkList DisCreat_2(LinkList& A);
     void Del_Same(LinkList& L);
+    void Get_common(LinkList& A,LinkList B); //有序递增
+    LinkList Union(LinkList& la,LinkList& lb); //递增有序
+    int Pattern(LinkList A,LinkList B);
 }
 #endif
