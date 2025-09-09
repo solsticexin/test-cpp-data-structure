@@ -8,5 +8,6 @@ namespace link_list{
     void RangeDelete(LinkList& L,int min,int max);
     void test_Reverse();
     LinkList DisCreat_2(LinkList& A);
+    void Del_Same(LinkList& L);
 }
 #endif

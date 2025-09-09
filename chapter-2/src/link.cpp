@@ -100,4 +100,18 @@ namespace link_list{
         ra->next=nullptr;
         return B;
     }
+    void Del_Same(LinkList& L){
+        if(L==nullptr)return;
+        auto p=L->next;
+        LNode* q{nullptr};
+        while (p!=nullptr && p->next!=nullptr) {
+            if (p->data==p->next->data) {
+                q=p->next;
+                p->next=q->next;
+                delete  q;
+            }else {
+                p=p->next;
+            }
+        }
+    }
 }
