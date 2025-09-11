@@ -1,7 +1,6 @@
 #include "../include/link.h"
 #include "list.h"
 #include <iostream>
-#include <bits/stl_set.h>
 
 namespace link_list{
     LinkList Reverse_1(LinkList L){
@@ -219,7 +218,61 @@ namespace link_list{
         q->next=h1;
         return h1;
     }
-
+    LNode* Converse(LNode* L, int k) {
+        int n{1};
+        LNode* p{L};
+        while (p->next!=nullptr) {
+            p=p->next;
+            n++;
+        }
+        p->next =L;
+        for (int i{1};i<n-k;i++) {
+            p=p->next;
+        }
+        L=p->next;
+        p->next=nullptr;
+        return L;
+    }
+    LNode* FindLoopStart(LNode* head) {
+        LNode* fast{head},*slow{head};
+        while (fast!=nullptr&& fast->next!=nullptr) {
+            slow=slow->next;
+            fast=fast->next->next;
+            if (slow==fast) break;
+        }
+        if (fast==nullptr || fast->next ==nullptr) return nullptr;
+        LNode* p1=head;
+        LNode* p2 {slow};
+        while (p1!=p2) {
+            p1=p1->next;
+            p2=p2->next;
+        }
+        return p1;
+    }
+    int PairSum(LinkList& L) {
+        LNode* fast=L->next,*slow{L};
+        while (fast!=nullptr&&fast->next!=nullptr){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        LNode* newHead{nullptr},*p=slow->next,*tmp{};
+        while (p!=nullptr) {
+            tmp=p->next;
+            p->next=newHead;
+            newHead=p;
+            p=tmp;
+        }
+        int mx{0};
+        p=L;
+        LNode* q{newHead};
+        while (q!=nullptr) {
+            if (p->data + q->data >mx)
+                mx=p->data+q->data;
+            p=p->next;
+            q=q->next;
+        }
+        return mx;
+    }
     namespace circular_linked_list {
     DNode* Locate(DLinkList& L, int x) {
         DNode* p{L->next},*q;
@@ -246,18 +299,85 @@ namespace link_list{
         q->next=p;
         return p;
     }
-    // DNode* Locate_2(DLinkList& L,int x) {
-    //     if (L==nullptr) return nullptr;
-    //     DNode* p{L->next};
-    //     DNode* temp{nullptr};
-    //     while (p!=nullptr && p->data!=x) p=p->next; //找到x所在结点
-    //     if (p==nullptr) exit(0);
-    //     p->freq++;
-    //     temp=p->pre;
-    //     if (p->pre==L ||temp->freq > p->freq) { //判断x所在结点时候是头结点或者是前一结点是否大于x所在结点
-    //         return  p;
-    //     }
-    //     if (p->next ==nullptr)
-    // }
     }
+    namespace p18 {
+        int listlen(SNode* head) {
+            int len{};
+            while (head->next!=nullptr) {
+                len++;
+                head=head->next;
+            }
+            return len;
+        }
+        SNode* find_list(SNode* str1, SNode* str2) {
+            int m,n;
+            SNode*p,*q;
+            m=listlen(str1);
+            n=listlen(str2);
+            for (p=str1;m>n;m--) {
+                p=p->next;
+            }
+            for (q=str2;m<n;n--) {
+                q=q->next;
+            }
+            while (p->next!=nullptr&&p->next!=q->next) {
+                p=p->next;
+                q=q->next;
+            }
+            return p->next;
+        }
+
+    }
+}
+
+namespace p59_19 {
+    void func(PNODE h, int n) {
+        PNODE p=h,r{};
+        int *q{},m{};
+        q=new int[n+1]();
+        for (int i{};i<n+1;i++)
+            *(q+i)=0;
+        while (p->link!=nullptr) {
+            m=p->link->data>0? p->link->data:-p->link->data;
+            if (*(q+m)==0) {
+                *(q+m)=1;
+                p=p->link;
+            }else{}
+            r=p->link;
+            p->link=r->link;
+            delete r;
+        }
+        delete[] q;
+    }
+
+}
+
+namespace p60_20 {
+    void change_list(NODE* h) {
+        NODE* p,*q,*r,*s;
+        p=q=h;
+        while (p->next!=nullptr) {
+            p=p->next;
+            q=q->next;
+            if (q->next!=nullptr) q=q->next;
+        }
+        q=q->next;
+        p->next=nullptr;
+        while (q!=nullptr) {
+            r=q->next;
+            q->next=p->next;
+            p->next=q;
+            q=r;
+        }
+        s=h->next;
+        q=p->next;
+        p->next=nullptr;
+        while (q!=nullptr) {
+            r=q->next;
+            q->next=s->next;
+            s->next=q;
+            q=r;
+        }
+    }
+
 }
