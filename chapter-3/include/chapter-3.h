@@ -5,4 +5,5 @@
 #ifndef TEST_CPP_DATASTRUCTURE_CHAPTER_3_H
 #define TEST_CPP_DATASTRUCTURE_CHAPTER_3_H
 void test_sq_stack();
+bool Judage(char A[]);
 #endif //TEST_CPP_DATASTRUCTURE_CHAPTER_3_H

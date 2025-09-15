@@ -13,10 +13,10 @@ typedef struct Stack {
         int top;
     } SqStack;
     void InitStack(SqStack& S);
-    bool isEmpty(SqStack& S);
-    bool push(SqStack& S,int e);
-    bool pop(SqStack& S,int& e);
-    bool peek(SqStack& S,int& e);
+    bool StackEmpty(SqStack& S);
+    bool Push(SqStack& S,int e);
+    bool Pop(SqStack& S,int& e);
+    bool GetTop(SqStack& S,int& e);
 }
 
 #endif //TEST_CPP_DATASTRUCTURE_STACK_H

@@ -8,23 +8,23 @@ namespace stack{
     void InitStack(SqStack& S) {
         S.top = 0;
     }
-    bool isEmpty(SqStack& S) {
+    bool StackEmpty(SqStack& S) {
         return S.top == 0;
     }
-    bool push(SqStack& S,int e) {
+    bool Push(SqStack& S,int e) {
         if (S.top == MaxSize)
             return false;
         S.data[S.top++] = e;
         return true;
     }
-    bool pop(SqStack& S,int& e) {
-        if (isEmpty(S))
+    bool Pop(SqStack& S,int& e) {
+        if (StackEmpty(S))
             return false;
         e=S.data[--S.top];
         return true;
     }
-    bool peek(SqStack& S,int& e) {
-        if (isEmpty(S))
+    bool GetTop(SqStack& S,int& e) {
+        if (StackEmpty(S))
             return false;
         const auto temp=S.top-1;
         e=S.data[temp];
