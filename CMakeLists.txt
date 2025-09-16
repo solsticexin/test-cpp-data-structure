@@ -11,7 +11,10 @@ add_subdirectory(chapter-2)
 add_subdirectory(chapter-3)
 
 #编译主程序
-add_executable(test_cpp_DataStructure main.cpp)
+add_executable(
+    test_cpp_DataStructure 
+        main.cpp        
+)
 
 
 #链接各个模块的库

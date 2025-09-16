@@ -6,9 +6,12 @@
 #include "stack.h"
 #include <iostream>
 
-
+void test_bracket_check();
 int main() {
-    // link_list::test_Reverse();
+    test_bracket_check();
+    return 0;
+}
+void test_bracket_check(){
     std::cout <<"测试括号匹配问题" <<std::endl;
     char test_bracket[] = "(+++123)()()";
     auto result=stack::BracketCheck(test_bracket,sizeof(test_bracket)-1);
@@ -16,5 +19,4 @@ int main() {
         std::cout<<"匹配成功！！！\n";
     else
         std::cout<<"匹配失败！！！\n";
-    return 0;
 }
