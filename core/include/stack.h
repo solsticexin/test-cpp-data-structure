@@ -4,7 +4,7 @@
 
 #ifndef TEST_CPP_DATASTRUCTURE_STACK_H
 #define TEST_CPP_DATASTRUCTURE_STACK_H
-
+#include <string>
 #ifndef STACK_MAX_SIZE
 #define STACK_MAX_SIZE 100
 #endif
@@ -48,6 +48,8 @@ namespace stack{
         return true;
     }
     bool BracketCheck(char str[],int length);
+    bool BracketCheck(std::string str);
+    std::string infixToPostfix(std::string infix);
 }
 
 #endif //TEST_CPP_DATASTRUCTURE_STACK_H
