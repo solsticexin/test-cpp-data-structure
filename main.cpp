@@ -1,21 +1,20 @@
-#include "chapter-2/include/chapter-2.h"
-#include "chapter-3/include/chapter-3.h"
-#include "core/include/string.h"
-#include "chapter-2/include/link.h"
-#include "list.h"
+// #include "chapter-2/include/chapter-2.h"
+// #include "chapter-3/include/chapter-3.h"
+// #include "core/include/string.h"
+// #include "chapter-2/include/link.h"
+// #include "list.h"
+#include "stack.h"
+#include <iostream>
 
 
 int main() {
-    link_list::test_ostream();
-    test_A19_01();
-    test_A19_02();
-    test_A19_03();
-    test_A19_04();
-    test_sq_stack();
-    test_A19_06();
-    ::string::test_Index();  // 使用全局命名空间中的string
-    test_A19_12();
-    link_list::test_Reverse();
-    
+    // link_list::test_Reverse();
+    std::cout <<"测试括号匹配问题" <<std::endl;
+    char test_bracket[] = "(+++123)()()";
+    auto result=stack::BracketCheck(test_bracket,sizeof(test_bracket)-1);
+    if(result)
+        std::cout<<"匹配成功！！！\n";
+    else
+        std::cout<<"匹配失败！！！\n";
     return 0;
 }

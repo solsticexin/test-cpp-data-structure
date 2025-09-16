@@ -10,7 +10,7 @@ using namespace std;
 
 void test_sq_stack() {
     std::cout << "test SQ_STACK ..." << std::endl;
-    SqStack S;
+    SqStack<int> S;
     int result{};
     InitStack(S);
     if (StackEmpty(S))
