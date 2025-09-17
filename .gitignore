@@ -53,3 +53,4 @@ Thumbs.db
 
 # Other
 /.cache
+test_infix_to_postfix
