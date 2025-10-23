@@ -83,6 +83,41 @@ int dc(LinkList L,int n){
     }
     if(i==-1) return 1;
     else    return 0;
-    
-    
+}
+int push(int i ,elemtp x){
+    if (i<0 || i >1){
+        std::cout << "栈号输入不对" <<"\n";
+    }
+    if(s.top[1]-s.top[0]==1){
+        std::cout << "栈已满" << "\n";
+        return 0;
+    }
+    switch(i){
+        case 0:s.stack[++s.top[0]] ==x; return 1;break;
+        case 1:s.stack[--s.top[1]] ==x; return 1;
+    }
+}
+
+elemtp pop(int i){
+    if(i<0 || i>1){
+        std::cout << "栈号输入不对" <<"\n";
+        exit(0);
+    }
+    switch(i){
+        case 0:
+            if(s.top[0] == 1){
+                std::cout <<"栈空\n";
+                return -1;
+            }else
+                return s.stack[s.top[0]-1];
+            break;
+        case 1:
+            if(s.top[1] == maxsize){
+                std::cout << "栈空\n";
+                return -1;
+            }else{
+                return s.stack[s.top[1]++];
+            }
+        break;
+    }
 }
